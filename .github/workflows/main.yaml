@@ -22,7 +22,7 @@ jobs:
           args: >
             --enableRetired
       - name: Upload Test Result
-        uses: action/upload-artifact@v2
+        uses: actions/upload-artifact@v2
         with: 
           name: dependency-check-report
           path: ${{ github.workspace }}/reports
