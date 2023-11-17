@@ -33,7 +33,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with: 
           name: dependency-check-report
-          path: ${{ github.workspace }}/dependency_reports
+          path: ${{ github.workspace }}/reports
   slscan:
     runs-on: ubuntu-latest
     needs: dependencyCheck
