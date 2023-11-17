@@ -1,0 +1,28 @@
+name: DevSecOps
+
+on: [push]
+
+jobs:
+  dependencyCheck:
+    runs-on: ubuntu-latest
+    name: dependency check
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Build Project with Maven
+        run: mvn clean install
+      - name: Dependency Check
+        uses: dependency-check/Dependency-Check_Action@1.1.0
+        continue-on-error: true
+        with:
+          project: 'test'
+          path: '.'
+          format: 'HTML'
+          out: 'reports'
+          args: >
+            --enableRetired
+      - name: Upload Test Result
+        uses: action/upload-artifact@v2
+        with: 
+          name: dependency-check-report
+          path: ${{ github.workspace }}/reports
